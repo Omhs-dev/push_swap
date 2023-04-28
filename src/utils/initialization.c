@@ -12,6 +12,7 @@
 
 #include "../../includes/push_swap.h"
 
+//fill stack a with the values provided
 t_stack *stack_values(int num_arg, char **arr_str)
 {
 	t_stack *stack_a;
@@ -33,4 +34,33 @@ t_stack *stack_values(int num_arg, char **arr_str)
 		i++;
 	}
 	return (stack_a);
+}
+
+void indexation(t_stack *stack_a, int size)
+{
+	t_stack *ptr;
+	t_stack *highest;
+	int data;
+
+	while (--size > 0)
+	{
+		ptr = stack_a;
+		data = INT_MIN;
+		highest = NULL;
+		while (ptr)
+		{
+			if (ptr -> value == INT_MIN && ptr -> index == 0)
+				ptr -> index = 1;
+			if (ptr -> value > value && ptr -> index == 0)
+			{
+				value = ptr -> value;
+				highest = ptr;
+				ptr = stack_a;
+			}
+			else
+				ptr = ptr -> next;
+		}
+		if (highest != NULL)
+			highest -> index = size;
+	}
 }
