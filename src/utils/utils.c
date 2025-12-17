@@ -6,37 +6,64 @@
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 05:35:40 by ohamadou          #+#    #+#             */
-/*   Updated: 2023/04/27 15:33:21 by ohamadou         ###   ########.fr       */
+/*   Updated: 2023/06/12 19:40:41 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
 //changes
-void free_stack(t_stack **stack)
-{
-	t_stack *tmp;
 
-	//some change
-	if (!stack || !(*stack))
-		return ;
-	while (*stack)
+int	ft_isdigit(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+int	ft_issign(char c)
+{
+	return (c == '-' || c == '+');
+}
+
+int	ft_strcmp_nb(const char *s1, const char *s2)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = i;
+	if (s1[i] == '+')
 	{
-		tmp = (*stack)-> next;
-		free(*stack);
-		*stack = tmp;
+		if (s2[j] != '+')
+			i++;
 	}
-	*stack = NULL;
+	else
+	{
+		if (s2[j] == '+')
+			j++;
+	}
+	while (s1[i] != '\0' && s2[j] != '\0' && s1[i] == s2[j])
+	{
+		i++;
+		j++;
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[j]);
 }
 
-//changes
-void exit_error(t_stack **stack_a, t_stack **stack_b)
+int	absolute_nb(int nb)
 {
-	if (stack_a == NULL || *stack_a != NULL)
-		free_stack(stack_a);
-	if (stack_b == NULL || *stack_b != NULL)
-		free_stack(stack_b);
-	write(2, "Error\n", 6);
-	exit (1);
+	if (nb < 0)
+		return (nb * -1);
+	return (nb);
 }
 
+void	ft_putstr(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+}

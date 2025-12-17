@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_stack.c                                       :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/11 08:58:33 by ohamadou          #+#    #+#             */
-/*   Updated: 2023/06/12 21:05:46 by ohamadou         ###   ########.fr       */
+/*   Created: 2023/04/28 06:52:53 by ohamadou          #+#    #+#             */
+/*   Updated: 2023/06/09 17:21:24 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	push(t_stack **stack_src, t_stack **stack_dst)
+void	free_stack(t_stack **stack)
 {
 	t_stack	*tmp;
 
-	if (*stack_src == NULL)
+	if (!stack || !(*stack))
 		return ;
-	tmp = (*stack_src)-> next;
-	(*stack_src)-> next = *stack_dst;
-	*stack_dst = *stack_src;
-	*stack_src = tmp;
+	while (*stack)
+	{
+		tmp = (*stack)-> next;
+		free(*stack);
+		*stack = tmp;
+	}
+	*stack = NULL;
 }
 
-void	push_a(t_stack **stack_a, t_stack **stack_b)
+//changes
+void	exit_error(t_stack **stack_a, t_stack **stack_b)
 {
-	push(stack_b, stack_a);
-	write(1, "pa\n", 3);
-}
-
-void	push_b(t_stack **stack_a, t_stack **stack_b)
-{
-	push(stack_a, stack_b);
-	write(1, "pb\n", 3);
+	if (stack_a == NULL || *stack_a != NULL)
+		free_stack(stack_a);
+	if (stack_b == NULL || *stack_b != NULL)
+		free_stack(stack_b);
+	write(2, "Error\n", 6);
+	exit (EXIT_FAILURE);
 }

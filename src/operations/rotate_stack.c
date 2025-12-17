@@ -6,43 +6,42 @@
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 01:16:02 by ohamadou          #+#    #+#             */
-/*   Updated: 2023/04/27 01:26:48 by ohamadou         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:00:26 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-static void	rotate(t_stack *stack_cntn)
+void	rotate(t_stack **stack_cntn)
 {	
-	t_node	*temp;
-	int swp;
+	t_stack	*temp;
+	t_stack	*swp;
 
-	temp = stack_cntn;
-	swp = 0;
-	while (temp != NULL && temp -> next != NULL)
+	if (*stack_cntn && (*stack_cntn)-> next)
 	{
-		swp = temp -> data;
-		temp -> data = temp -> next -> data;
-		temp -> next -> data = swp;
-		temp = temp -> next;
+		temp = *stack_cntn;
+		*stack_cntn = (*stack_cntn)-> next;
+		temp -> next = NULL;
+		swp = get_last_element(*stack_cntn);
+		swp -> next = temp;
 	}
 }
 
-void rotate_a(t_stack **stack_a)
+void	rotate_a(t_stack **stack_a)
 {
-	rotate(*stack_a);
-	write(1, "ra\n", 3);
+	rotate(stack_a);
+	ft_putstr("ra\n");
 }
 
-void rotate_b(t_stack **stack_b)
+void	rotate_b(t_stack **stack_b)
 {
-	rotate(*stack_b);
-	write(1, "rb\n", 3);
+	rotate(stack_b);
+	ft_putstr("rb\n");
 }
 
-void rotate_rr(t_stack **stack_a, t_stack **stack_b)
+void	rotate_rr(t_stack **stack_a, t_stack **stack_b)
 {
-	rotate(*stack_a);
-	rotate(*stack_b);
-	write(1, "rr\n", 3);
+	rotate(stack_a);
+	rotate(stack_b);
+	ft_putstr("rr\n");
 }

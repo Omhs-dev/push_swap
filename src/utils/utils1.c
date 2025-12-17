@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohamadou <ohamadou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 16:05:26 by ohamadou          #+#    #+#             */
-/*   Updated: 2022/12/04 19:34:47 by ohamadou         ###   ########.fr       */
+/*   Created: 2023/04/28 09:06:09 by ohamadou          #+#    #+#             */
+/*   Updated: 2023/06/10 19:22:16 by ohamadou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/push_swap.h"
 
-static int	blanks(const char c)
+long int	ft_atoi(const char *str)
 {
-	if (c == ' ' || c == '\n' || c == '\n' || c == '\t'
-		|| c == '\v' || c == '\f' || c == '\r')
-		return (1);
-	return (0);
-}
-
-int	ft_atoi(const char *str)
-{
-	int	i;
-	int	opr;
-	int	sign;
+	int			i;
+	long int	opr;
+	int			sign;
 
 	i = 0;
-	while (blanks(str[i]))
-		i++;
 	if ((str[i] == 32) || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	sign = 1;
@@ -36,7 +26,7 @@ int	ft_atoi(const char *str)
 	{
 		if (str[i] == '-')
 			sign = -1;
-			i++;
+		i++;
 	}
 	opr = 0;
 	while (str[i] >= '0' && str[i] <= '9')
@@ -46,14 +36,3 @@ int	ft_atoi(const char *str)
 	}
 	return (opr * sign);
 }
-
-// int	main()
-// {
-//     char str[] = "er584526";
-//     char str1[] = "584526";
-//     int val = ft_atoi(str);
-//     int val1 = ft_atoi(str1);
-//     printf("%d\n", val);
-//     printf("%d\n", val1);
-//     return 0;
-// }
