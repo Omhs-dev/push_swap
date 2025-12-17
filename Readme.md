@@ -7,24 +7,32 @@ A solution to the 42 push_swap project. Given a list of integers, the program pr
 
 ## Build
 
-- Build main:
-  - make
-- Build bonus:
-  - make bonus
-- Clean:
-  - make clean
-  - make fclean
-  - make re
+```bash
+make
+```
+
+```bash
+make bonus
+```
+
+```bash
+make clean
+make fclean
+make re
+```
 
 ## Usage
 
-- Sort and print operations:
-  - ./push_swap 2 1 3
-    - Prints: e.g., `sa`
-- Validate with bonus checker (if built):
-  - ARG="2 1 3 6 5 8"
-  - ./push_swap $ARG | ./checker $ARG
-    - Prints: `OK` or `KO`
+```bash
+./push_swap 2 1 3
+sa
+```
+
+```bash
+ARG="2 1 3 6 5 8"
+./push_swap $ARG | ./checker $ARG
+OK
+```
 
 Errors:
 - Non-integers, duplicates, or values outside 32-bit range print "Error" to stderr and exit non-zero.
